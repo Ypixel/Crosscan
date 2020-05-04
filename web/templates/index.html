@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<meta http-equiv="refresh"content="{{time}}">
+<div class="container">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="card-box">
+                    <h3> 等待队列: {{waiting_num}}个请求包</h3>
+                    {% for item in waiting %}
+                        <h5><a class="a-{{stats_all[item]}}" href="/req?hash={{item}}">{{item[:27]}}</a>  </h5>
+                    {% end %}
+                    <h4><a style="color:red;" href="/list?type=waiting">查看详情</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="card-box">
+                    <h3>正在运行: {{running_num}}个请求包</h3>
+                    {% for item in running %}
+                        <h5><a class="a-{{stats_all[item]}}" href="/req?hash={{item}}">{{item[:27]}}</a>  </h5>
+                    {% end %}
+                    <h4><a style="color:red;" href="/list?type=running">查看详情</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="card-box">
+                    <h3>已完成: {{finished_num}}个请求包</h3>
+                    {% for item in finished %}
+                        <h5><a class="a-{{stats_all[item]}}" href="/req?hash={{item}}">{{item[:27]}}</a>  </h5>
+                    {% end %}
+                    <h4><a style="color:red;" href="/list?type=finished">查看详情</a></h4>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="card-box" >
+                    <h3>含有漏洞: {{vulnerable_num}}个请求包</h3>
+                    {% for item in vulnerable %}
+                        <h5><a class="a-{{stats_all[item]}}" href="/req?hash={{item}}">{{item[:27]}}</a>  </h5>
+                    {% end %}
+                    <h4><a style="color:red;" href="/list?type=vulnerable">查看详情</a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% end %}
